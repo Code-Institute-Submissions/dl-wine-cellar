@@ -14,7 +14,7 @@ class WineAdmin(admin.ModelAdmin):
         'image',
     )
 
-        ordering = ('product_code',)
+    ordering = ('product_code',)
 
 class CategoryAdmin(admin.ModelAdmin):
         list_display = (
