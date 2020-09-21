@@ -27,11 +27,11 @@
                             <div class="card h-100 border-0">
                                 <div class="embed-responsive embed-responsive-4by3">
                                 {% if wine.image %}
-                                <a href="">
+                                <a href="{% url 'wine_detail' wine.id %}">
                                     <img class="card-img-top embed-responsive-item" src="{{ wine.image.url }}" alt="{{ wine.name }}">
                                 </a>
                                 {% else %}
-                                <a href="">
+                                <a href="{% url 'wine_detail' wine.id %}">
                                     <img class="card-img-top embed-responsive-item" src="../media/noimage.png" alt="{{ wine.name }}">
                                 </a>
                                 {% endif %}
@@ -42,7 +42,7 @@
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="lead mb-0 text-left font-weight-bold">${{ wine.price }}</p>
+                                            <p class="lead mb-0 text-left font-weight-bold">€{{ wine.price }}</p>
                                             {% if wine.rating %}
                                                 <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ wine.rating }} / 5</small>
                                             {% else %}
