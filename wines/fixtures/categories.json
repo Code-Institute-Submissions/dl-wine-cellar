@@ -1,0 +1,1 @@
+[{"pk":1,"model":"wines.category","fields":{"name":"red_wine","friendly_name":"Red Wine"}},{"pk":2,"model":"wines.category","fields":{"name":"white_wine","friendly_name":"White Wine"}},{"pk":3,"model":"wines.category","fields":{"name":"sparkling_wine","friendly_name":"Sparkling Wine"}}]
