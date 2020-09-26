@@ -58,6 +58,20 @@ body {
     color: white;
 }
 
+.btn-outline-green {
+    background: white;
+    color: #455927 !important; /* use important to override link colors for <a> elements */
+    border: 1px solid #455927;
+}
+
+.btn-outline-green:hover,
+.btn-outline-green:active,
+.btn-outline-green:focus {
+    background: #455927;
+    color: white !important;
+}
+
+
 .text-green {
     color: #455927 !important;
 }
@@ -80,6 +94,7 @@ body {
 	z-index: -1;
 }
 
+/* Back to Top Button */
 #btt-button {
     height: 50px;
     width: 50px;

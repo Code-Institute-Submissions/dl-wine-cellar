@@ -39,6 +39,30 @@
                     <p class="mb-0 text-left"><span class="font-weight-bold">Grape:  </span>{{ wine.grape.get_friendly_name }}</p>
                     <p class="mt-3">{{ wine.description }}</p>
                     <p class="mb-0 text-left"><span class="font-weight-bold">Price:  </span>€{{ wine.price }}</p>
+                    <form class="form" action="{% url 'add_to_cart' wine.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-12">
+                                <p class="mt-3"><strong>Quantity:</strong></p>
+                                <div class="form-group w-50">
+                                    <div class="input-group">
+                                        <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ wine.id }}" id="id_qty_{{ wine.id }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <a href="{% url 'wines' %}" class="btn btn-outline-green rounded-0 mt-5">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Keep Shopping</span>
+                                </a>
+                                <input type="submit" class="btn btn-green rounded-0 text-uppercase mt-5" value="Add to Cart">
+                            </div>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
