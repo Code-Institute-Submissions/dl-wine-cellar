@@ -1,11 +1,24 @@
 from decimal import Decimal
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+from wines.models import Wine
 
 def cart_contents(request):
 
     cart_items = []
     total = 0
     no_of_items = 0
+    cart = request.session.get('cart', {})
+
+    for item_id, quantity in cart.items():
+        wine = get_object_or_404(Wine, pk=item_id)
+        total += quantity * wine.price
+        no_of_items += quantity
+        cart_items.append({
+            'item_id': item_id,
+            'quantity': quantity,
+            'wine': wine,
+        })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
