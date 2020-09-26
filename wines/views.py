@@ -12,8 +12,23 @@ def all_wines(request):
     query = None
     category = None
     grape = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                wines = wines.annotate(lower_name=Lower('name'))
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            wines = wines.order_by(sortkey)
+
         if 'category' in request.GET:
             category = request.GET.get('category','')
             wines = wines.filter(category__name=category)
@@ -31,11 +46,14 @@ def all_wines(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(country__icontains=query) | Q(grape__name__icontains=query)
             wines = wines.filter(queries)
 
+    current_sorting = f'{sort}_{direction}'
+
     context = {
         'wines': wines,
         'search_term': query,
         'current_category': category,
         'current_grape': grape,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'wines/wines.html', context)
