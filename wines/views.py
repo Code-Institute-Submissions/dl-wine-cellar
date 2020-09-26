@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+from django.db.models.functions import Lower
 from .models import Wine, Category, Grape
 
 # Create your views here.
@@ -10,8 +11,8 @@ def all_wines(request):
 
     wines = Wine.objects.all()
     query = None
-    category = None
-    grape = None
+    categories = None
+    grapes = None
     sort = None
     direction = None
 
@@ -30,12 +31,14 @@ def all_wines(request):
             wines = wines.order_by(sortkey)
 
         if 'category' in request.GET:
-            category = request.GET.get('category','')
-            wines = wines.filter(category__name=category)
-
+            categories = request.GET['category'].split(',')
+            wines = wines.filter(category__name__in=categories)
+            categories = Category.objects.filter(name__in=categories)
+           
         if 'grape' in request.GET:
-            grape = request.GET.get('grape','')
-            wines = wines.filter(grape__name=grape)
+            grapes = request.GET['grape'].split(',')
+            wines = wines.filter(grape__name__in=grapes)
+            grapes = Grape.objects.filter(name__in=grapes)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -51,8 +54,8 @@ def all_wines(request):
     context = {
         'wines': wines,
         'search_term': query,
-        'current_category': category,
-        'current_grape': grape,
+        'current_categories': categories,
+        'current_grapes': grapes,
         'current_sorting': current_sorting,
     }
 

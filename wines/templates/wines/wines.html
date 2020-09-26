@@ -14,7 +14,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col text-center mt-3">
-                <h2 class="logo-font">Wines</h2>
+                <h2 class="logo-font">Wines
+                    {% for c in current_categories %}
+                        <span> | {{ c.friendly_name }} </span>
+                    {% endfor %}
+                    {% for g in current_grapes %}
+                        <span> | {{ g.friendly_name }} </span>
+                    {% endfor %}                       
+                </h2>
                 <hr class="w-50 mb-1">  
             </div>
         </div>
@@ -38,7 +45,7 @@
                         </div>
                         <div class="col-12 col-md-6 order-md-first">
                             <p class="text-muted mt-3 text-center text-md-left">
-                                {% if search_term or current_category or current_grape or current_sorting != 'None_None' %}
+                                {% if search_term or current_categories or current_grapes or current_sorting != 'None_None' %}
                                     <span class="small"><a href="{% url 'wines' %}">Wine Home</a> | </span>
                                 {% endif %}
                                 {{ wines|length }}{% if wines|length == 1 %} Wine{% else %} Wines{% endif %}{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
@@ -104,4 +111,50 @@
             </div>
         </div>
     </div>
+    <!-- Back to top button -->
+    <a id="btt-button">
+    </a>
+{% endblock %}
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        var btn = $('#btt-button');
+
+        $(window).scroll(function() {
+            if ($(window).scrollTop() > 300) {
+                btn.addClass('show');
+            } else {
+                btn.removeClass('show');
+            }
+        });
+
+        btn.on('click', function(e) {
+            e.preventDefault();
+              $('html, body').animate({
+                scrollTop: 0}, '300');
+        });
+    </script>
+   
+    <script type="text/javascript">
+        $('#sort-selector').change(function() {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+
+            var selectedVal = selector.val();
+            if(selectedVal != "reset"){
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
 {% endblock %}
