@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Wine
+from .models import Wine, Category, Grape
 
 # Create your views here.
 
@@ -10,8 +10,18 @@ def all_wines(request):
 
     wines = Wine.objects.all()
     query = None
+    category = None
+    grape = None
 
     if request.GET:
+        if 'category' in request.GET:
+            category = request.GET.get('category','')
+            wines = wines.filter(category__name=category)
+
+        if 'grape' in request.GET:
+            grape = request.GET.get('grape','')
+            wines = wines.filter(grape__name=grape)
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -24,6 +34,8 @@ def all_wines(request):
     context = {
         'wines': wines,
         'search_term': query,
+        'current_category': category,
+        'current_grape': grape,
     }
 
     return render(request, 'wines/wines.html', context)

@@ -17,11 +17,13 @@
                 Red Wine
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="red-wine-link">
-                <a href="" class="dropdown-item">Shiraz / Syrah</a>
-                <a href="" class="dropdown-item">Malbec</a>
-                <a href="" class="dropdown-item">Tempranillo</a>
-                <a href="" class="dropdown-item">Garnacha</a>
-                <a href="" class="dropdown-item">Cabernet Sauvignon</a>
+                <a href="{% url 'wines' %}?grape=shiraz_syrah" class="dropdown-item">Shiraz / Syrah</a>
+                <a href="{% url 'wines' %}?grape=malbec" class="dropdown-item">Malbec</a>
+                <a href="{% url 'wines' %}?grape=tempranillo" class="dropdown-item">Tempranillo</a>
+                <a href="{% url 'wines' %}?grape=garnacha" class="dropdown-item">Garnacha</a>
+                <a href="{% url 'wines' %}?grape=cabernet_sauvignon" class="dropdown-item">Cabernet Sauvignon</a>
+                <a href="{% url 'wines' %}?category=red_wine" class="dropdown-item">All Red Wine</a>
+                
             </div>
         </li>
 
@@ -30,11 +32,12 @@
                 White Wine
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="white-wine-link">
-                <a href="" class="dropdown-item">Sauvignon Blanc</a>
-                <a href="" class="dropdown-item">Albariño</a>
-                <a href="" class="dropdown-item">Pinot Grigio</a>
-                <a href="" class="dropdown-item">Chardonnay</a>
-                <a href="" class="dropdown-item">Riesling</a>
+                <a href="{% url 'wines' %}?grape=sauvignon_blanc" class="dropdown-item">Sauvignon Blanc</a>
+                <a href="{% url 'wines' %}?grape=albariño" class="dropdown-item">Albariño</a>
+                <a href="{% url 'wines' %}?grape=pinot_grigio" class="dropdown-item">Pinot Grigio</a>
+                <a href="{% url 'wines' %}?grape=chardonnay" class="dropdown-item">Chardonnay</a>
+                <a href="{% url 'wines' %}?grape=riesling" class="dropdown-item">Riesling</a>
+                <a href="{% url 'wines' %}?category=white_wine" class="dropdown-item">All White Wine</a>
             </div>
         </li>
 
@@ -43,8 +46,9 @@
                 Sparkling Wine
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="sparkling-link">
-                <a href="" class="dropdown-item">Prosecco</a>
-                <a href="" class="dropdown-item">Champagne</a>
+                <a href="{% url 'wines' %}?grape=prosecco" class="dropdown-item">Prosecco</a>
+                <a href="{% url 'wines' %}?grape=champagne" class="dropdown-item">Champagne</a>
+                <a href="{% url 'wines' %}?category=sparkling_wine" class="dropdown-item">All Sparkling Wine</a>
             </div>
         </li>
     </ul>
