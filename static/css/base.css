@@ -71,7 +71,6 @@ body {
     color: white !important;
 }
 
-
 .text-green {
     color: #455927 !important;
 }
@@ -142,6 +141,10 @@ body {
     opacity: 1;
     visibility: visible;
   }  
+
+.update-link, .remove-item {
+    cursor: pointer;
+}
 
 /* -------------------------------- Media Queries */
 
