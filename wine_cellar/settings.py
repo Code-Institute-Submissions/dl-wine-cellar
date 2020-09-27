@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'home',
     'wines',
     'cart',
+    'checkout',
 
     #allauth
     'allauth',
