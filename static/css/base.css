@@ -236,7 +236,7 @@ input[name='q']::placeholder {
 }
 
 .allauth-form-inner-content input {
-    border-color: #000;
+    border-color: #455927;
     border-radius: 0;
 }
 
@@ -260,8 +260,8 @@ input[name='q']::placeholder {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background-color: #000;
-    border: 1px solid #000;
+    background-color: #455927;
+    border: 1px solid #455927;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -274,8 +274,8 @@ input[name='q']::placeholder {
 .allauth-form-inner-content button:hover,
 .allauth-form-inner-content input[type='submit']:hover {	
 	color: #fff;
-    background-color: #222;
-    border-color: #222;
+    background-color: #597322;
+    border-color: #597322;
 }
 
 .allauth-form-inner-content a {
