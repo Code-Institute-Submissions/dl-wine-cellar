@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['00e561e67bb5.ngrok.io','127.0.0.1']
+ALLOWED_HOSTS = ['b1139aada17e.ngrok.io','127.0.0.1']
 
 
 # Application definition
@@ -190,3 +190,4 @@ STRIPE_CURRENCY = 'eur'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '') 
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
+DEFAULT_FROM_EMAIL = 'dl.winecellar@gmail.com'
