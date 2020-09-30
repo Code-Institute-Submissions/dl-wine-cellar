@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Wine, Category, Grape
+from .forms import WineForm
 
 # Create your views here.
 
@@ -72,3 +73,14 @@ def wine_detail(request, wine_id):
     }
 
     return render(request, 'wines/wine_detail.html', context)
+
+
+def add_wine(request):
+    """ Add a wine to the store """
+    form = WineForm()
+    template = 'wines/add_wine.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
