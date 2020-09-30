@@ -80,9 +80,9 @@ def add_wine(request):
     if request.method == 'POST':
         form = WineForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            wine = form.save()
             messages.success(request, 'Successfully added wine!')
-            return redirect(reverse('add_wine'))
+            return redirect(reverse('wine_detail', args=[wine.id]))
         else:
             messages.error(request, 'Failed to add wine. Please ensure the form is valid.')
     else:
@@ -117,3 +117,11 @@ def edit_wine(request, wine_id):
     }
 
     return render(request, template, context)
+
+
+def delete_wine(request, wine_id):
+    """ Delete a wine from the store """
+    wine = get_object_or_404(Wine, pk=wine_id)
+    wine.delete()
+    messages.success(request, 'Wine deleted!')
+    return redirect(reverse('wines'))
