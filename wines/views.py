@@ -77,7 +77,16 @@ def wine_detail(request, wine_id):
 
 def add_wine(request):
     """ Add a wine to the store """
-    form = WineForm()
+    if request.method == 'POST':
+        form = WineForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added wine!')
+            return redirect(reverse('add_wine'))
+        else:
+            messages.error(request, 'Failed to add wine. Please ensure the form is valid.')
+    else:
+        form = WineForm()
     template = 'wines/add_wine.html'
     context = {
         'form': form,
