@@ -3,12 +3,12 @@ from django.contrib import messages
 
 from wines.models import Wine
 
-# Create your views here.
 
 def view_cart(request):
     """ A view that renders the content of the shopping cart """
 
     return render(request, 'cart/cart.html')
+
 
 def add_to_cart(request, item_id):
     """ Add a quantity of the specified item to the shopping cart """
@@ -28,6 +28,7 @@ def add_to_cart(request, item_id):
     request.session['cart'] = cart
     return redirect(redirect_url)
 
+
 def adjust_cart(request, item_id):
     """Adjust the quantity of the specified item to the specified amount"""
 
@@ -45,6 +46,7 @@ def adjust_cart(request, item_id):
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
 
+
 def remove_from_cart(request, item_id):
     """Remove the item from the shopping cart"""
 
@@ -60,4 +62,4 @@ def remove_from_cart(request, item_id):
 
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
-        return HttpResponse(status=500) 
+        return HttpResponse(status=500)
