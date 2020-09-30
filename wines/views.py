@@ -108,7 +108,7 @@ def edit_wine(request, wine_id):
     
     wine = get_object_or_404(Wine, pk=wine_id)
     if request.method == 'POST':
-        form = wineForm(request.POST, request.FILES, instance=wine)
+        form = WineForm(request.POST, request.FILES, instance=wine)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated wine!')
@@ -116,7 +116,7 @@ def edit_wine(request, wine_id):
         else:
             messages.error(request, 'Failed to update wine. Please ensure the form is valid.')
     else:
-        form = wineForm(instance=wine)
+        form = WineForm(instance=wine)
         messages.info(request, f'You are editing {wine.name}')
 
     template = 'wines/edit_wine.html'
@@ -133,7 +133,7 @@ def delete_wine(request, wine_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
-        
+
     wine = get_object_or_404(Wine, pk=wine_id)
     wine.delete()
     messages.success(request, 'Wine deleted!')
