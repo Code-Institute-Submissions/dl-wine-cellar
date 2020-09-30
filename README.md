@@ -65,8 +65,8 @@ The features implemented in the application are listed below:
 - Login: This allows a registered user to log in to the application.
 - Register: This allows new users to create an account.
 - Logout: This allows a user to logout from the application.
-- Add Wine: This allows a registered user to add a recipe.
-- Edit wine: This allows a user to edit their own recipe. If the current user is not the author, an error message is displayed below the navigation bar.
+- Add Wine: This allows a registered user to add a wine.
+- Edit wine: This allows a user to edit their own wine. If the current user is not the author, an error message is displayed below the navigation bar.
 - Delete wine: This allows a store owner to delete a wine from the store. If the current user is not a superuser, an error message is displayed.
 - Toast messages: Bootstrap Toast messages are used to display messages to the user when carrying out different functions such as adding an item to the cart or editing an item.
 - Search bar: This allows any user to search by name, description, country or grape of the wine.
@@ -95,7 +95,7 @@ ___
 
 
 ### Libraries
-- **[Django](https://www.djangoproject.com/** - Uses the Django framework for each application.
+- **[Django](https://www.djangoproject.com/)** - Uses the Django framework for each application.
 - **[Bootstrap](https://getbootstrap.com/)** - Used throughout the site for responsive design
 - **[Stripe](https://www.stripe.com/)** - Used to accept test payments on the site.
 - **[Font Awesome](https://fontawesome.com/)** - Used to enhance the UX 
