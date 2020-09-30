@@ -64,7 +64,7 @@ def all_wines(request):
 
 
 def wine_detail(request, wine_id):
-    """ A view to show individual product details """
+    """ A view to show individual wine details """
 
     wine = get_object_or_404(Wine, pk=wine_id)
 
@@ -90,6 +90,30 @@ def add_wine(request):
     template = 'wines/add_wine.html'
     context = {
         'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def edit_wine(request, wine_id):
+    """ Edit a wine in the store """
+    wine = get_object_or_404(Wine, pk=wine_id)
+    if request.method == 'POST':
+        form = wineForm(request.POST, request.FILES, instance=wine)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated wine!')
+            return redirect(reverse('wine_detail', args=[wine.id]))
+        else:
+            messages.error(request, 'Failed to update wine. Please ensure the form is valid.')
+    else:
+        form = wineForm(instance=wine)
+        messages.info(request, f'You are editing {wine.name}')
+
+    template = 'wines/edit_wine.html'
+    context = {
+        'form': form,
+        'wine': wine,
     }
 
     return render(request, template, context)
